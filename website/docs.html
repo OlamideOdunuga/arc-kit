@@ -8,119 +8,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #FAFAF8; --bg2: #F3F1EE; --bg3: #EAE8E3;
-    --text: #1A1916; --text2: #6B6860; --text3: #A09E99;
-    --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.15);
-    --coral: #D94F3A; --coral-bg: #FBE9E6; --coral-text: #9B2D1C; --coral-dark: #B03020;
-    --terminal-bg: #F0EDE8;
-    --radius: 12px;
-  }
-
-  body.dark {
-    --bg: #141210; --bg2: #1E1C19; --bg3: #2A2720;
-    --text: #F0EDE8; --text2: #9A9690; --text3: #5A5852;
-    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
-    --coral: #F0614A; --coral-bg: #3A1A14; --coral-text: #F5907E; --coral-dark: #E04535;
-    --terminal-bg: #1A1714;
-  }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    transition: background 0.3s, color 0.3s;
-  }
-
-  nav {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 1.25rem 2rem; border-bottom: 0.5px solid var(--border);
-    position: sticky; top: 0; background: var(--bg); z-index: 100;
-  }
-  .logo { font-size: 15px; font-weight: 500; letter-spacing: -0.3px; color: var(--text); text-decoration: none; }
-  .logo em { font-style: normal; color: var(--coral); }
-  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
-  .nav-right a { font-size: 13px; color: var(--text2); text-decoration: none; }
-  .nav-right a.active { color: var(--coral); font-weight: 500; }
-  .nav-right a:hover { color: var(--text); }
-  .toggle-btn { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); background: var(--bg2); border: 0.5px solid var(--border2); border-radius: 99px; padding: 5px 12px; cursor: pointer; }
-  .toggle-btn:hover { background: var(--bg3); }
-
-  .docs-shell { display: flex; max-width: 1100px; margin: 0 auto; }
-
-  .sidebar {
-    width: 220px; flex-shrink: 0; padding: 2.5rem 1.5rem 2.5rem 0;
-    position: sticky; top: 64px; align-self: flex-start;
-    max-height: calc(100vh - 64px); overflow-y: auto;
-  }
-  .sidebar-group { margin-bottom: 1.75rem; }
-  .sidebar-label { font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem; }
-  .sidebar a { display: block; font-size: 13.5px; color: var(--text2); text-decoration: none; padding: 5px 0; }
-  .sidebar a:hover { color: var(--text); }
-  .sidebar a.active { color: var(--coral); font-weight: 500; }
-
-  .docs-main { flex: 1; padding: 2.5rem 2rem 6rem; max-width: 720px; }
-
-  .docs-h1 { font-family: 'Fraunces', serif; font-size: 36px; font-weight: 500; letter-spacing: -1px; margin-bottom: 0.75rem; }
-  .docs-lede { font-size: 16px; color: var(--text2); margin-bottom: 2.5rem; line-height: 1.7; }
-
-  .docs-section { margin-bottom: 3rem; scroll-margin-top: 80px; }
-  .docs-h2 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
-  .docs-h3 { font-size: 15px; font-weight: 500; margin: 1.5rem 0 0.5rem; }
-  .docs-p { font-size: 14.5px; color: var(--text2); margin-bottom: 1rem; line-height: 1.75; }
-  .docs-p code, li code { font-family: 'SF Mono', monospace; font-size: 13px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 4px; padding: 1px 6px; color: var(--coral-text); }
-  body.dark .docs-p code, body.dark li code { color: var(--coral); }
-
-  .docs-list { margin: 0 0 1rem 1.2rem; }
-  .docs-list li { font-size: 14.5px; color: var(--text2); margin-bottom: 0.4rem; line-height: 1.6; }
-
-  pre.code-block {
-    background: var(--terminal-bg); border: 0.5px solid var(--border); border-radius: var(--radius);
-    padding: 1rem 1.25rem; overflow-x: auto; margin-bottom: 1.25rem;
-  }
-  pre.code-block code { font-family: 'SF Mono', monospace; font-size: 13px; color: var(--text); line-height: 1.7; white-space: pre; }
-  .code-block .c-coral { color: var(--coral); }
-  .code-block .c-dim { color: var(--text3); }
-
-  .callout {
-    border: 0.5px solid var(--border2); border-left: 3px solid var(--coral);
-    background: var(--coral-bg); border-radius: 8px; padding: 0.9rem 1.1rem;
-    font-size: 13.5px; color: var(--coral-text); margin-bottom: 1.5rem;
-  }
-  body.dark .callout { color: var(--text); }
-
-  table.props-table { width: 100%; border-collapse: collapse; margin-bottom: 1.5rem; font-size: 13.5px; }
-  table.props-table th { text-align: left; font-weight: 500; color: var(--text3); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding: 0 0 8px; border-bottom: 0.5px solid var(--border2); }
-  table.props-table td { padding: 10px 0; border-bottom: 0.5px solid var(--border); color: var(--text2); vertical-align: top; }
-  table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', monospace; font-size: 12.5px; white-space: nowrap; padding-right: 1rem; }
-
-  .cap-link-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 1.5rem; }
-  .cap-link { display: flex; align-items: center; gap: 12px; border: 0.5px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem; text-decoration: none; transition: border-color 0.2s, transform 0.2s; }
-  .cap-link:hover { border-color: var(--coral); transform: translateY(-1px); }
-  .cap-link i { font-size: 17px; color: var(--coral); }
-  .cap-link span { font-size: 13.5px; color: var(--text); font-weight: 500; }
-
-  .docs-divider { border: none; border-top: 0.5px solid var(--border); margin: 0.5rem 0 2.5rem; }
-
-  footer { text-align: center; padding: 2rem 0; font-size: 12px; color: var(--text3); border-top: 0.5px solid var(--border); }
-  footer a { color: var(--coral); text-decoration: none; }
-
-  @media (max-width: 800px) {
-    .sidebar { display: none; }
-    .docs-main { padding: 2rem 1.25rem 4rem; }
-  }
-</style>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+  <script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('toggleBtn');
+      if (btn) btn.innerHTML = '<i class="ti ti-sun"></i> Light';
+    });
+  }
+</script>
+  <div class="arc-1 arc-decor"></div>
+<div class="arc-2 arc-decor"></div>
+<div class="arc-3 arc-decor"></div>
 <nav>
-  <a class="logo" href="index.html">arc<em>-appkit</em></a>
-  <div class="nav-right">
+  <div style="display:flex; align-items:center; gap:14px;">
+    <button class="hamburger-btn" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
+    <a class="logo" href="index.html">arc<em>-appkit</em></a>
+  </div>
+    <div class="nav-right">
     <a href="docs.html" class="active">Docs</a>
     <a href="quickstart.html">Quickstart</a>
     <a href="templates.html">Templates</a>
@@ -168,7 +76,7 @@
 
     <div class="callout"><i class="ti ti-info-circle"></i> Arc is in public testnet. <code>@circle-fin/app-kit</code> requires a free Kit Key from Circle Console — get one before you start.</div>
 
-    <section class="docs-section" id="prerequisites">
+    <section class="docs-section fade-up" id="prerequisites">
       <h2 class="docs-h2">Prerequisites</h2>
       <p class="docs-p">Before using arc-appkit, make sure you have:</p>
       <ul class="docs-list">
@@ -178,7 +86,7 @@
       </ul>
     </section>
 
-    <section class="docs-section" id="installation">
+    <section class="docs-section fade-up" id="installation">
       <h2 class="docs-h2">Installation</h2>
       <p class="docs-p">Pick the path that matches what you're building. New project — use the CLI. Existing project — install the library.</p>
       <pre class="code-block"><code><span class="c-coral">$</span> npx arc-appkit create</code></pre>
@@ -187,7 +95,7 @@
 
     <hr class="docs-divider">
 
-    <section class="docs-section" id="cli-usage">
+    <section class="docs-section fade-up" id="cli-usage">
       <h2 class="docs-h2">CLI — Usage</h2>
       <p class="docs-p">Run the create command and answer two prompts:</p>
       <pre class="code-block"><code><span class="c-coral">$</span> npx arc-appkit create
@@ -196,7 +104,7 @@
       <p class="docs-p">That's it — a complete Next.js project is generated in a new folder.</p>
     </section>
 
-    <section class="docs-section" id="cli-output">
+    <section class="docs-section fade-up" id="cli-output">
       <h2 class="docs-h2">What gets generated</h2>
       <pre class="code-block"><code>my-arc-app/
 ├── app/
@@ -214,13 +122,13 @@
 
     <hr class="docs-divider">
 
-    <section class="docs-section" id="library-install">
+    <section class="docs-section fade-up" id="library-install">
       <h2 class="docs-h2">Library — Install</h2>
       <p class="docs-p">Already have a project? Drop components in directly:</p>
       <pre class="code-block"><code><span class="c-coral">$</span> npm install @arc-appkit/react</code></pre>
     </section>
 
-    <section class="docs-section" id="library-components">
+    <section class="docs-section fade-up" id="library-components">
       <h2 class="docs-h2">Components</h2>
       <pre class="code-block"><code><span class="c-coral">import</span> { ArcBridge, ArcSwap, ArcSend, ArcUnifiedBalance } <span class="c-coral">from</span> <span class="c-dim">'@arc-appkit/react'</span>
 
@@ -236,7 +144,7 @@ export default function Page() {
 
     <hr class="docs-divider">
 
-    <section class="docs-section" id="capabilities">
+    <section class="docs-section fade-up" id="capabilities">
       <h2 class="docs-h2">Capabilities</h2>
       <p class="docs-p">Four building blocks, each wrapping a different part of the App Kit SDK.</p>
       <div class="cap-link-row">
@@ -247,27 +155,27 @@ export default function Page() {
       </div>
     </section>
 
-    <section class="docs-section" id="cap-bridge">
+    <section class="docs-section fade-up" id="cap-bridge">
       <h3 class="docs-h3">Bridge</h3>
       <p class="docs-p">Transfers USDC from another chain (e.g. Ethereum Sepolia) onto Arc Testnet using Circle's CCTP-based bridging.</p>
       <pre class="code-block"><code>POST /api/bridge</code></pre>
     </section>
 
-    <section class="docs-section" id="cap-swap">
+    <section class="docs-section fade-up" id="cap-swap">
       <h3 class="docs-h3">Swap</h3>
       <p class="docs-p">Exchanges USDC for EURC on Arc Testnet in a single call.</p>
       <pre class="code-block"><code>POST /api/swap
 { "amount": "10.00" }</code></pre>
     </section>
 
-    <section class="docs-section" id="cap-send">
+    <section class="docs-section fade-up" id="cap-send">
       <h3 class="docs-h3">Send</h3>
       <p class="docs-p">A direct wallet-to-wallet USDC transfer on Arc.</p>
       <pre class="code-block"><code>POST /api/send
 { "recipient": "0x...", "amount": "5.00" }</code></pre>
     </section>
 
-    <section class="docs-section" id="cap-balance">
+    <section class="docs-section fade-up" id="cap-balance">
       <h3 class="docs-h3">Unified Balance</h3>
       <p class="docs-p">Reads a single combined USDC balance across all chains the App Kit supports — no manual multichain aggregation needed.</p>
       <pre class="code-block"><code>GET /api/balance</code></pre>
@@ -275,7 +183,7 @@ export default function Page() {
 
     <hr class="docs-divider">
 
-    <section class="docs-section" id="configuration">
+    <section class="docs-section fade-up" id="configuration">
       <h2 class="docs-h2">Configuration</h2>
       <p class="docs-p">Every generated project ships with a <code>.env.example</code>. Copy it to <code>.env.local</code> and fill in:</p>
       <table class="props-table">
@@ -288,7 +196,7 @@ export default function Page() {
       <div class="callout"><i class="ti ti-alert-triangle"></i> Never commit <code>.env.local</code>. It's already in <code>.gitignore</code> by default.</div>
     </section>
 
-    <section class="docs-section" id="deployment">
+    <section class="docs-section fade-up" id="deployment">
       <h2 class="docs-h2">Deployment</h2>
       <p class="docs-p">Generated projects deploy to Vercel like any Next.js app:</p>
       <pre class="code-block"><code><span class="c-coral">$</span> npm install -g vercel
@@ -296,7 +204,7 @@ export default function Page() {
       <p class="docs-p">Add your environment variables in the Vercel dashboard under Project Settings → Environment Variables before your first deploy.</p>
     </section>
 
-    <section class="docs-section" id="faq">
+    <section class="docs-section fade-up" id="faq">
       <h2 class="docs-h2">FAQ</h2>
       <h3 class="docs-h3">SWC binary fails to load on Windows</h3>
       <p class="docs-p">Reinstall the platform binary directly: <code>npm install @next/swc-win32-x64-msvc --force</code></p>
@@ -313,9 +221,22 @@ export default function Page() {
 <script>
   function toggleMode() {
     const isDark = document.body.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
     const btn = document.getElementById('toggleBtn');
     btn.innerHTML = isDark ? '<i class="ti ti-sun"></i> Light' : '<i class="ti ti-moon"></i> Dark';
   }
+
+  function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('closed');
+}
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>

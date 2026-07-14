@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quickstart — arc-appkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('toggleBtn');
+      if (btn) btn.innerHTML = '<i class="ti ti-sun"></i> Light';
+    });
+  }
+</script>
+<div class="arc-1 arc-decor"></div>
+<div class="arc-2 arc-decor"></div>
+<div class="arc-3 arc-decor"></div>
+<nav>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <a class="logo" href="index.html">arc<em>-appkit</em></a>
+  </div>
+    <div class="nav-right">
+    <a href="docs.html">Docs</a>
+    <a href="quickstart.html" class="active">Quickstart</a>
+    <a href="templates.html">Templates</a>
+    <a href="https://github.com/OlamideOdunuga/arc-kit" target="_blank">GitHub</a>
+    <button class="toggle-btn" onclick="toggleMode()" id="toggleBtn"><i class="ti ti-moon"></i> Dark</button>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-tag"><span class="tag-dot"></span> 5 minutes</div>
+  <h1>From zero to<br><em>running app.</em></h1>
+  <p class="lede">No docs required. Follow these steps and you'll have a working Arc App Kit project running locally by the end.</p>
+
+  <div class="steps">
+
+    <div class="step fade-up">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Install Node.js</div>
+        <p class="step-desc">You need Node.js 18 or later. Check if you already have it:</p>
+        <pre class="code-block"><code><span class="c-coral">$</span> node -v</code></pre>
+        <p class="step-desc">If you see a version number you're good. If not, download it at <a href="https://nodejs.org" target="_blank">nodejs.org</a>.</p>
+      </div>
+    </div>
+
+    <div class="step fade-up">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">Get a Kit Key from Circle Console</div>
+        <p class="step-desc">arc-appkit uses Circle's App Kit SDK under the hood. You need a free Kit Key to make any capability work.</p>
+        <p class="step-desc">Go to <a href="https://console.circle.com" target="_blank">console.circle.com</a> → create an account → create a new project → copy your Kit Key.</p>
+        <div class="callout"><i class="ti ti-info-circle"></i> Testnet Kit Keys are free. No credit card needed.</div>
+      </div>
+    </div>
+
+    <div class="step fade-up">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Scaffold your project</div>
+        <p class="step-desc">Run the CLI and answer two questions — project name and capability.</p>
+        <pre class="code-block"><code><span class="c-coral">$</span> npx arc-appkit create</code></pre>
+        <pre class="code-block"><code><span class="c-dim">? What is your project name?</span> my-arc-app
+<span class="c-dim">? Which capability?</span> Send</code></pre>
+        <p class="step-desc">A new folder is created with everything pre-wired.</p>
+      </div>
+    </div>
+
+    <div class="step fade-up">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Fill in your environment variables</div>
+        <p class="step-desc">Inside your new project folder, copy the env file:</p>
+        <pre class="code-block"><code><span class="c-coral">$</span> cd my-arc-app
+<span class="c-coral">$</span> cp .env.example .env.local</code></pre>
+        <p class="step-desc">Open <code>.env.local</code> and fill in your Circle API Key and wallet private key.</p>
+        <div class="callout"><i class="ti ti-alert-triangle"></i> Never commit <code>.env.local</code> — your private key lives here. It's already in <code>.gitignore</code>.</div>
+      </div>
+    </div>
+
+    <div class="step fade-up">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <div class="step-title">Install and run</div>
+        <p class="step-desc">Install dependencies and start the dev server:</p>
+        <pre class="code-block"><code><span class="c-coral">$</span> npm install
+<span class="c-coral">$</span> npm run dev</code></pre>
+        <p class="step-desc">Open <a href="http://localhost:3000" target="_blank">localhost:3000</a> — your Arc app is running.</p>
+      </div>
+    </div>
+
+    <div class="step fade-up">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <div class="step-title">Get testnet USDC</div>
+        <p class="step-desc">Your app is running but you need testnet USDC to actually use it. Head to the Circle faucet and request some to your wallet address.</p>
+        <p class="step-desc"><a href="https://faucet.circle.com" target="_blank">faucet.circle.com</a> — free testnet USDC, no signup needed.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="done-box">
+    <div class="done-icon"><i class="ti ti-circle-check"></i></div>
+    <h2>You're live on Arc Testnet.</h2>
+    <p>Want to go deeper? Read the full docs or explore all four capability templates.</p>
+    <a class="btn-main" href="docs.html">Read the docs</a>
+    <a class="btn-outline" href="templates.html">Browse templates</a>
+  </div>
+</div>
+
+<footer>arc-appkit · MIT licensed · built on <a href="https://arc.io" target="_blank">Arc Network</a></footer>
+
+<script>
+  function toggleMode() {
+    const isDark = document.body.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const btn = document.getElementById('toggleBtn');
+    btn.innerHTML = isDark ? '<i class="ti ti-sun"></i> Light' : '<i class="ti ti-moon"></i> Dark';
+  }
+
+  function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('closed');
+}
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Templates — arc-appkit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('toggleBtn');
+      if (btn) btn.innerHTML = '<i class="ti ti-sun"></i> Light';
+    });
+  }
+</script>
+<div class="arc-1 arc-decor"></div>
+<div class="arc-2 arc-decor"></div>
+<div class="arc-3 arc-decor"></div>
+<nav>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <a class="logo" href="index.html">arc<em>-appkit</em></a>
+  </div>  <div class="nav-right">
+    <a href="docs.html">Docs</a>
+    <a href="quickstart.html">Quickstart</a>
+    <a href="templates.html" class="active">Templates</a>
+    <a href="https://github.com/OlamideOdunuga/arc-kit" target="_blank">GitHub</a>
+    <button class="toggle-btn" onclick="toggleMode()" id="toggleBtn"><i class="ti ti-moon"></i> Dark</button>
+  </div>
+</nav>
+
+<div class="templates-page">
+  <div class="page-tag"><span class="tag-dot"></span> 4 templates</div>
+  <h1>Pick your<br><em>starting point.</em></h1>
+  <p class="templates-lede">Each template scaffolds a complete Next.js project pre-wired for one Arc App Kit capability. Run one command, get everything.</p>
+
+  <div class="templates-grid">
+    <div class="template-jump">
+  <a href="#bridge">Bridge</a>
+  <a href="#swap">Swap</a>
+  <a href="#send">Send</a>
+  <a href="#balance">Unified Balance</a>
+</div>
+    <!-- BRIDGE -->
+    <div class="template-card fade-up" id="bridge">
+      <div class="template-header">
+        <div class="template-header-left">
+          <div class="template-icon"><i class="ti ti-arrows-exchange"></i></div>
+          <div>
+            <div class="template-name">Bridge</div>
+          </div>
+        </div>
+        <button class="copy-cmd-btn" onclick="copyCmd(this, 'npx arc-appkit create')">
+          <i class="ti ti-terminal"></i> npx arc-appkit create
+        </button>
+      </div>
+      <div class="template-body">
+        <div>
+          <p class="template-desc">Transfer USDC from Ethereum Sepolia to Arc Testnet using Circle's CCTP bridging. The generated project handles the full cross-chain flow server-side — no frontend wallet complexity.</p>
+          <ul class="template-files">
+            <li><i class="ti ti-file"></i> app/page.js — bridge UI</li>
+            <li><i class="ti ti-file"></i> app/api/bridge/route.js — SDK call</li>
+            <li><i class="ti ti-file"></i> .env.example — pre-filled RPC config</li>
+            <li><i class="ti ti-file"></i> README.md — setup steps</li>
+          </ul>
+        </div>
+        <div class="template-code"><code><span class="tc">import</span> { AppKit } <span class="tc">from</span> <span class="td">'@circle-fin/app-kit'</span>
+
+<span class="td">// in your API route</span>
+<span class="tc">const</span> result = <span class="tc">await</span> kit.bridge({
+  from: { chain: <span class="td">'ETH-SEPOLIA'</span> },
+  to:   { chain: <span class="td">'ARC'</span> },
+  amount: <span class="td">'1.00'</span>,
+  token: <span class="td">'USDC'</span>,
+})</code></div>
+      </div>
+      <div class="template-footer">
+        <a href="docs.html#cap-bridge">Read Bridge docs <i class="ti ti-arrow-right"></i></a>
+        <span style="font-size:12px;color:var(--text3)">ETH-SEPOLIA → ARC</span>
+      </div>
+    </div>
+
+    <!-- SWAP -->
+    <div class="template-card fade-up" id="swap">
+      <div class="template-header">
+        <div class="template-header-left">
+          <div class="template-icon"><i class="ti ti-repeat"></i></div>
+          <div>
+            <div class="template-name">Swap</div>
+          </div>
+        </div>
+        <button class="copy-cmd-btn" onclick="copyCmd(this, 'npx arc-appkit create')">
+          <i class="ti ti-terminal"></i> npx arc-appkit create
+        </button>
+      </div>
+      <div class="template-body">
+        <div>
+          <p class="template-desc">Exchange USDC for EURC on Arc Testnet in a single SDK call. The generated project includes an amount input, a swap button, and a server-side API route that executes the swap.</p>
+          <ul class="template-files">
+            <li><i class="ti ti-file"></i> app/page.js — swap UI with amount input</li>
+            <li><i class="ti ti-file"></i> app/api/swap/route.js — SDK call</li>
+            <li><i class="ti ti-file"></i> .env.example — pre-filled RPC config</li>
+            <li><i class="ti ti-file"></i> README.md — setup steps</li>
+          </ul>
+        </div>
+        <div class="template-code"><code><span class="tc">import</span> { AppKit } <span class="tc">from</span> <span class="td">'@circle-fin/app-kit'</span>
+
+<span class="td">// in your API route</span>
+<span class="tc">const</span> result = <span class="tc">await</span> kit.swap({
+  chain: <span class="td">'ARC'</span>,
+  fromToken: <span class="td">'USDC'</span>,
+  toToken: <span class="td">'EURC'</span>,
+  amount,
+})</code></div>
+      </div>
+      <div class="template-footer">
+        <a href="docs.html#cap-swap">Read Swap docs <i class="ti ti-arrow-right"></i></a>
+        <span style="font-size:12px;color:var(--text3)">USDC → EURC</span>
+      </div>
+    </div>
+
+    <!-- SEND -->
+    <div class="template-card fade-up" id="send">
+      <div class="template-header">
+        <div class="template-header-left">
+          <div class="template-icon"><i class="ti ti-send"></i></div>
+          <div>
+            <div class="template-name">Send</div>
+          </div>
+        </div>
+        <button class="copy-cmd-btn" onclick="copyCmd(this, 'npx arc-appkit create')">
+          <i class="ti ti-terminal"></i> npx arc-appkit create
+        </button>
+      </div>
+      <div class="template-body">
+        <div>
+          <p class="template-desc">Send USDC directly to any wallet address on Arc Testnet. The generated project includes recipient and amount inputs, and a server-side route that executes the transfer.</p>
+          <ul class="template-files">
+            <li><i class="ti ti-file"></i> app/page.js — send UI with address input</li>
+            <li><i class="ti ti-file"></i> app/api/send/route.js — SDK call</li>
+            <li><i class="ti ti-file"></i> .env.example — pre-filled RPC config</li>
+            <li><i class="ti ti-file"></i> README.md — setup steps</li>
+          </ul>
+        </div>
+        <div class="template-code"><code><span class="tc">import</span> { AppKit } <span class="tc">from</span> <span class="td">'@circle-fin/app-kit'</span>
+
+<span class="td">// in your API route</span>
+<span class="tc">const</span> result = <span class="tc">await</span> kit.send({
+  chain: <span class="td">'ARC'</span>,
+  to: recipient,
+  amount,
+  token: <span class="td">'USDC'</span>,
+})</code></div>
+      </div>
+      <div class="template-footer">
+        <a href="docs.html#cap-send">Read Send docs <i class="ti ti-arrow-right"></i></a>
+        <span style="font-size:12px;color:var(--text3)">Wallet → Wallet</span>
+      </div>
+    </div>
+
+    <!-- UNIFIED BALANCE -->
+    <div class="template-card fade-up" id="balance">
+      <div class="template-header">
+        <div class="template-header-left">
+          <div class="template-icon"><i class="ti ti-wallet"></i></div>
+          <div>
+            <div class="template-name">Unified Balance</div>
+          </div>
+        </div>
+        <button class="copy-cmd-btn" onclick="copyCmd(this, 'npx arc-appkit create')">
+          <i class="ti ti-terminal"></i> npx arc-appkit create
+        </button>
+      </div>
+      <div class="template-body">
+        <div>
+          <p class="template-desc">Read a single combined USDC balance across all chains the App Kit supports — no manual multichain aggregation. The generated project fetches and displays the total in one click.</p>
+          <ul class="template-files">
+            <li><i class="ti ti-file"></i> app/page.js — balance display UI</li>
+            <li><i class="ti ti-file"></i> app/api/balance/route.js — SDK call</li>
+            <li><i class="ti ti-file"></i> .env.example — pre-filled RPC config</li>
+            <li><i class="ti ti-file"></i> README.md — setup steps</li>
+          </ul>
+        </div>
+        <div class="template-code"><code><span class="tc">import</span> { AppKit } <span class="tc">from</span> <span class="td">'@circle-fin/app-kit'</span>
+
+<span class="td">// in your API route</span>
+<span class="tc">const</span> balance = <span class="tc">await</span> kit.getUnifiedBalance({
+  adapter,
+})
+
+<span class="td">// returns total across all chains</span>
+balance.total</code></div>
+      </div>
+      <div class="template-footer">
+        <a href="docs.html#cap-balance">Read Unified Balance docs <i class="ti ti-arrow-right"></i></a>
+        <span style="font-size:12px;color:var(--text3)">All chains → one balance</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>arc-appkit · MIT licensed · built on <a href="https://arc.io" target="_blank">Arc Network</a></footer>
+
+<script>
+  function toggleMode() {
+    const isDark = document.body.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const btn = document.getElementById('toggleBtn');
+    btn.innerHTML = isDark ? '<i class="ti ti-sun"></i> Light' : '<i class="ti ti-moon"></i> Dark';
+  }
+
+  function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('closed');
+}
+
+  function copyCmd(btn, cmd) {
+    navigator.clipboard.writeText(cmd);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<i class="ti ti-check"></i> copied!';
+    setTimeout(() => btn.innerHTML = orig, 2000);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

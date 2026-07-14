@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>arc-appkit — Scaffold Arc apps. Skip the setup.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark');
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('toggleBtn');
+      if (btn) btn.innerHTML = '<i class="ti ti-sun"></i> Light';
+    });
+  }
+</script>
+<div class="arc-1 arc-decor"></div>
+<div class="arc-2 arc-decor"></div>
+<div class="arc-3 arc-decor"></div>
+<nav>
+  <div style="display:flex; align-items:center; gap:14px;">
+    <button class="hamburger-btn" onclick="toggleSidebar()"><i class="ti ti-menu-2"></i></button>
+    <a class="logo" href="index.html">arc<em>-appkit</em></a>
+  </div>
+      <div class="nav-right">
+<a href="docs.html">Docs</a>
+<a href="quickstart.html">Quickstart</a>
+<a href="templates.html">Templates</a>
+<a href="https://github.com/OlamideOdunuga/arc-kit" target="_blank">GitHub</a>
+<span class="nav-badge">Testnet</span>
+      <button class="toggle-btn" onclick="toggleMode()" id="toggleBtn">
+        <i class="ti ti-moon"></i> Dark
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <div class="sidebar-label">On this page</div>
+      <a href="#how-it-works">How it works</a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#why">Why Arc App Kit</a>
+      <a href="#get-started">Get started</a>
+    </div>
+  </aside>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="hero-tag"><span class="hero-dot"></span> Built on Arc Network · Circle App Kit</div>
+    <h1>Stop setting up.<br>Start <em>building.</em></h1>
+    <p class="hero-desc">A CLI that scaffolds a ready-to-run Next.js project with Arc App Kit pre-wired. Pick your use case, get your project. No docs required.</p>
+    <div class="install-row">
+      <div class="install-box">
+        <span class="dollar">$</span>
+        <code>npx arc-appkit create</code>
+        <button class="copy-btn" onclick="copyCmd(this)">copy</button>
+      </div>
+    </div>
+    <div class="cta-row">
+<a class="btn-main" href="quickstart.html">Start building</a>
+<a class="btn-outline" href="https://github.com/OlamideOdunuga/arc-kit" target="_blank">View on GitHub</a>    </div>
+  </section>
+
+  <hr class="divider">
+
+  <div class="stats-row fade-up">
+    <div class="stat-cell">
+      <div class="stat-num" data-count="4">0</div>
+      <div class="stat-label">App Kit templates</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">&lt;5s</div>
+      <div class="stat-label">To scaffold</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-num">MIT</div>
+      <div class="stat-label">Open source</div>
+    </div>
+  </div>
+
+  <section class="section fade-up" id="how-it-works">
+    <div class="section-eyebrow">How it works</div>
+    <div class="section-h">Three prompts. One project.</div>
+    <p class="section-sub">Answer two questions. Get a full Next.js project with App Kit wired up and testnet config included.</p>
+    <div class="terminal-wrap">
+      <div class="terminal-bar">
+        <span class="dot dot-r"></span>
+        <span class="dot dot-y"></span>
+        <span class="dot dot-g"></span>
+        <span class="terminal-bar-label">arc-appkit</span>
+      </div>
+      <div class="terminal-body" id="terminal">
+        <span class="terminal-line"><span class="t-coral">$</span> <span class="t-white">npx arc-appkit create</span></span>
+        <span class="terminal-line"><span class="t-coral">🔵</span> <span class="t-white">Welcome to Arc App Kit Generator</span></span>
+        <span class="terminal-line">&nbsp;</span>
+        <span class="terminal-line"><span class="t-dim">?</span> <span class="t-white">What is your project name?</span> <span class="t-green">my-arc-app</span></span>
+        <span class="terminal-line"><span class="t-dim">?</span> <span class="t-white">Which capability?</span> <span class="t-green">Unified Balance</span></span>
+        <span class="terminal-line">&nbsp;</span>
+        <span class="terminal-line"><span class="t-green">✅ Project created successfully!</span></span>
+        <span class="terminal-line"><span class="t-muted">→ package.json · .env.example · src/app.js</span></span>
+        <span class="terminal-line">&nbsp;</span>
+        <span class="terminal-line"><span class="t-dim">$</span> <span class="t-white">cd my-arc-app && npm install && npm run dev</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade-up" id="capabilities">
+    <div class="section-eyebrow">Capabilities</div>
+    <div class="section-h">Pick your use case.</div>
+    <p class="section-sub">Each option generates different starter code, pre-configured for Arc Testnet.</p>
+    <div class="caps-grid">
+  <div class="cap-card fade-up" onclick="location.href='templates.html#bridge'" style="cursor:pointer;">
+    <div class="cap-icon"><i class="ti ti-arrows-exchange"></i></div>
+    <div><div class="cap-title">Bridge</div><div class="cap-desc">Transfer USDC across chains via CCTP</div></div>
+  </div>
+  <div class="cap-card fade-up" onclick="location.href='templates.html#swap'" style="cursor:pointer;">
+    <div class="cap-icon"><i class="ti ti-repeat"></i></div>
+    <div><div class="cap-title">Swap</div><div class="cap-desc">Exchange tokens on the same chain</div></div>
+  </div>
+  <div class="cap-card fade-up" onclick="location.href='templates.html#send'" style="cursor:pointer;">
+    <div class="cap-icon"><i class="ti ti-send"></i></div>
+    <div><div class="cap-title">Send</div><div class="cap-desc">Wallet-to-wallet USDC transfer</div></div>
+  </div>
+  <div class="cap-card fade-up" onclick="location.href='templates.html#balance'" style="cursor:pointer;">
+    <div class="cap-icon"><i class="ti ti-wallet"></i></div>
+    <div><div class="cap-title">Unified Balance</div><div class="cap-desc">Combine USDC from multiple chains instantly</div></div>
+  </div>
+</div>
+  </section>
+
+  <section class="section fade-up" id="why">
+    <div class="section-eyebrow">Why this exists</div>
+    <div class="section-h">Built for vibe coders.</div>
+    <p class="section-sub">Manual App Kit setup costs 30 minutes of reading docs. This costs 5 seconds.</p>
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="ti ti-bolt"></i></div>
+        <div class="why-title">Zero config</div>
+        <p class="why-desc">Arc Testnet pre-configured. ENV file included. Just install and run.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="ti ti-code"></i></div>
+        <div class="why-title">Real code</div>
+        <p class="why-desc">Full Next.js project, not just a snippet. App Kit wired end to end.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="ti ti-layout-grid"></i></div>
+        <div class="why-title">4 templates</div>
+        <p class="why-desc">Bridge, Swap, Send, Unified Balance — each with its own starter.</p>
+      </div>
+      <div class="why-card fade-up">
+        <div class="why-icon"><i class="ti ti-brand-open-source"></i></div>
+        <div class="why-title">Open source</div>
+        <p class="why-desc">MIT licensed. Fork it, extend it, make it yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-box fade-up" id="get-started">
+    <h2>Ready to build on Arc?</h2>
+    <p>One command. Your project is ready.</p>
+    <div class="install-box" style="display:inline-flex;margin-bottom:1.5rem;">
+      <span class="dollar">$</span>
+      <code>npx arc-appkit create</code>
+    </div>
+    <div class="cta-row" style="justify-content:center;">
+<a class="btn-main" href="quickstart.html">Start building</a>
+<a class="btn-outline" href="docs.html">Read the docs</a>    </div>
+  </section>
+  </div>
+  </div>
+
+  <footer>
+    arc-appkit · MIT licensed · built on <a href="https://arc.network" target="_blank">Arc Network</a>
+  </footer>
+
+<script>
+  function toggleMode() {
+    const isDark = document.body.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const btn = document.getElementById('toggleBtn');
+    btn.innerHTML = isDark
+      ? '<i class="ti ti-sun"></i> Light'
+      : '<i class="ti ti-moon"></i> Dark';
+  }
+
+  function toggleSidebar() {
+  document.querySelector('.sidebar').classList.toggle('closed');
+}
+
+  function copyCmd(btn) {
+    navigator.clipboard.writeText('npx arc-appkit create');
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 2000);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        if (entry.target.querySelector('[data-count]')) animateCount();
+        if (entry.target.id === 'terminal' || entry.target.closest('#terminal')) animateTerminal();
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const termObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) animateTerminal();
+    });
+  }, { threshold: 0.3 });
+
+  const terminal = document.querySelector('.terminal-wrap');
+  if (terminal) termObserver.observe(terminal);
+
+  function animateTerminal() {
+    const lines = document.querySelectorAll('.terminal-line');
+    lines.forEach((line, i) => {
+      setTimeout(() => line.classList.add('visible'), i * 120);
+    });
+  }
+
+  function animateCount() {
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      let current = 0;
+      const step = Math.ceil(target / 20);
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = current;
+        if (current >= target) clearInterval(timer);
+      }, 60);
+    });
+  }
+</script>
+</body>
+</html>
