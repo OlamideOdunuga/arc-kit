@@ -226,8 +226,10 @@ table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', m
   .stat-cell:not(:last-child) { border-right: none; border-bottom: 0.5px solid var(--border); }
   .page { padding: 2.5rem 1.25rem 4rem; }
 }
-@media (max-width: 600px) {
-  .arc-decor { display: none; }
+@media (max-width: 800px) {
+  .arc-1 { width: 280px; height: 280px; right: -80px; }
+  .arc-2 { width: 240px; height: 240px; left: -80px; }
+  .arc-3 { width: 260px; height: 260px; right: -80px; }
 }
 
 /* ── ARC BACKGROUND MOTIF ── */
