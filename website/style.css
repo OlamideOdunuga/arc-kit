@@ -218,6 +218,8 @@ table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', m
   .sidebar { display: none; }
   .docs-shell { display: block; }
   .docs-main { padding: 2rem 1.25rem 4rem; max-width: 100%; }
+  .nav-right a { display: none; }
+  .nav-badge { display: none; }
 }
 @media (max-width: 600px) {
   .hero h1 { font-size: 34px; }
