@@ -226,6 +226,9 @@ table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', m
   .stat-cell:not(:last-child) { border-right: none; border-bottom: 0.5px solid var(--border); }
   .page { padding: 2.5rem 1.25rem 4rem; }
 }
+@media (max-width: 600px) {
+  .arc-decor { display: none; }
+}
 
 /* ── ARC BACKGROUND MOTIF ── */
 body { position: relative; overflow-x: hidden; }
