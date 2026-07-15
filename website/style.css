@@ -216,7 +216,8 @@ table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', m
 }
 @media (max-width: 800px) {
   .sidebar { display: none; }
-  .docs-main { padding: 2rem 1.25rem 4rem; }
+  .docs-shell { display: block; }
+  .docs-main { padding: 2rem 1.25rem 4rem; max-width: 100%; }
 }
 @media (max-width: 600px) {
   .hero h1 { font-size: 34px; }
