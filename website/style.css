@@ -226,12 +226,6 @@ table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', m
   .stat-cell:not(:last-child) { border-right: none; border-bottom: 0.5px solid var(--border); }
   .page { padding: 2.5rem 1.25rem 4rem; }
 }
-@media (max-width: 800px) {
-  .arc-1 { width: 280px; height: 280px; right: -80px; }
-  .arc-2 { width: 240px; height: 240px; left: -80px; }
-  .arc-3 { width: 260px; height: 260px; right: -80px; }
-}
-
 /* ── ARC BACKGROUND MOTIF ── */
 body { position: relative; overflow-x: hidden; }
 
@@ -247,9 +241,10 @@ body { position: relative; overflow-x: hidden; }
 }
 body.dark .arc-decor { opacity: 0.14; }
 
-.arc-1 { width: 600px; height: 600px; border-width: 2px; top: 0px;    right: -220px; transform: rotate(-20deg); }
-.arc-2 { width: 500px; height: 500px; border-width: 1.5px; top: 40%;  left: -260px;  transform: rotate(160deg); }
-.arc-3 { width: 580px; height: 580px; border-width: 2px; top: 80%; right: -260px; transform: rotate(50deg); }nav, .container, .page, .docs-shell, .templates-page, footer {
+.arc-1 { width: 40vw; height: 40vw; max-width: 600px; max-height: 600px; border-width: 2px; top: 0px; right: -8vw; transform: rotate(-20deg); }
+.arc-2 { width: 35vw; height: 35vw; max-width: 500px; max-height: 500px; border-width: 1.5px; top: 40%; left: -8vw; transform: rotate(160deg); }
+.arc-3 { width: 38vw; height: 38vw; max-width: 580px; max-height: 580px; border-width: 2px; top: 80%; right: -8vw; transform: rotate(50deg); }
+nav, .container, .page, .docs-shell, .templates-page, footer {
   position: relative;
   z-index: 1;
 }
