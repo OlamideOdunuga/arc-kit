@@ -215,7 +215,6 @@ table.props-table td:first-child { color: var(--text); font-family: 'SF Mono', m
   .templates-page h1 { font-size: 28px; }
 }
 @media (max-width: 800px) {
-  .sidebar { display: none; }
   .docs-shell { display: block; }
   .docs-main { padding: 2rem 1.25rem 4rem; max-width: 100%; }
 }
