@@ -8,18 +8,55 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+  html { background: #FAFAF8; }
+  html.dark-preload { background: #141210; }
+</style>
+<script>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark-preload');
+  }
+</script>
 <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
-  <script>
+<script>
+  document.body.classList.add('no-transition');
+
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
+  }
+
+  window.addEventListener('load', () => {
+    document.body.classList.remove('no-transition');
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('toggleBtn');
+    if (btn && document.body.classList.contains('dark')) {
+      btn.innerHTML = '<i class="ti ti-sun"></i> Light';
+    }
+  });
+
+  if (localStorage.getItem('sidebarOpen') === 'true') {
     document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('toggleBtn');
-      if (btn) btn.innerHTML = '<i class="ti ti-sun"></i> Light';
+      document.querySelector('.sidebar').classList.remove('closed');
     });
   }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.accordion-toggle').forEach(btn => {
+      const saved = localStorage.getItem('accordion-' + btn.dataset.key);
+      if (saved === 'true') {
+        const content = btn.closest('.sidebar-page-row').nextElementSibling;
+        const icon = btn.querySelector('.accordion-icon');
+        content.classList.remove('collapsed');
+        icon.classList.remove('rotated');
+      }
+    });
+  });
 </script>
+
 <div class="arc-1 arc-decor"></div>
 <div class="arc-2 arc-decor"></div>
 <div class="arc-3 arc-decor"></div>
@@ -38,15 +75,65 @@
 </nav>
 
   <div class="docs-shell">
-  <aside class="sidebar closed">
-    <div class="sidebar-group">
-      <div class="sidebar-label">On this page</div>
-      <a href="#how-it-works">How it works</a>
-      <a href="#capabilities">Capabilities</a>
-      <a href="#why">Why Arc App Kit</a>
-      <a href="#get-started">Get started</a>
+<aside class="sidebar closed">
+  <div class="sidebar-group">
+
+    <div class="sidebar-page-row">
+      <a href="index.html" class="sidebar-page-link active">Home</a>
+      <button class="accordion-toggle" data-key="home" onclick="toggleAccordion(this)"><i class="ti ti-chevron-down accordion-icon"></i></button>
     </div>
-  </aside>
+    <div class="accordion-content collapsed">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#capabilities">Capabilities</a>
+      <a href="index.html#why">Why Arc App Kit</a>
+      <a href="index.html#get-started">Get started</a>
+    </div>
+
+    <div class="sidebar-page-row">
+      <a href="docs.html" class="sidebar-page-link">Docs</a>
+      <button class="accordion-toggle" data-key="docs" onclick="toggleAccordion(this)"><i class="ti ti-chevron-down accordion-icon"></i></button>
+    </div>
+    <div class="accordion-content collapsed">
+      <div class="accordion-sublabel">Get started</div>
+      <a href="docs.html#introduction">Introduction</a>
+      <a href="docs.html#prerequisites">Prerequisites</a>
+      <a href="docs.html#installation">Installation</a>
+
+      <div class="accordion-sublabel">CLI</div>
+      <a href="docs.html#cli-usage">Usage</a>
+      <a href="docs.html#cli-output">What gets generated</a>
+
+      <div class="accordion-sublabel">Library</div>
+      <a href="docs.html#library-install">Install</a>
+      <a href="docs.html#library-components">Components</a>
+
+      <div class="accordion-sublabel">Capabilities</div>
+      <a href="docs.html#cap-bridge">Bridge</a>
+      <a href="docs.html#cap-swap">Swap</a>
+      <a href="docs.html#cap-send">Send</a>
+      <a href="docs.html#cap-balance">Unified Balance</a>
+
+      <div class="accordion-sublabel">Reference</div>
+      <a href="docs.html#configuration">Configuration</a>
+      <a href="docs.html#deployment">Deployment</a>
+      <a href="docs.html#faq">FAQ</a>
+    </div>
+
+    <a href="quickstart.html" class="sidebar-page-link">Quickstart</a>
+
+    <div class="sidebar-page-row">
+      <a href="templates.html" class="sidebar-page-link">Templates</a>
+      <button class="accordion-toggle" data-key="templates" onclick="toggleAccordion(this)"><i class="ti ti-chevron-down accordion-icon"></i></button>
+    </div>
+    <div class="accordion-content collapsed">
+      <a href="templates.html#bridge">Bridge</a>
+      <a href="templates.html#swap">Swap</a>
+      <a href="templates.html#send">Send</a>
+      <a href="templates.html#balance">Unified Balance</a>
+    </div>
+
+  </div>
+</aside>
 <div class="sidebar-backdrop" onclick="toggleSidebar()"></div>
 
 <div class="container">
@@ -190,8 +277,19 @@
       : '<i class="ti ti-moon"></i> Dark';
   }
 
-  function toggleSidebar() {
-  document.querySelector('.sidebar').classList.toggle('closed');
+function toggleSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  sidebar.classList.toggle('closed');
+  localStorage.setItem('sidebarOpen', !sidebar.classList.contains('closed'));
+}
+
+function toggleAccordion(btn) {
+  const content = btn.closest('.sidebar-page-row').nextElementSibling;
+  const icon = btn.querySelector('.accordion-icon');
+  content.classList.toggle('collapsed');
+  icon.classList.toggle('rotated');
+  const isOpen = !content.classList.contains('collapsed');
+  localStorage.setItem('accordion-' + btn.dataset.key, isOpen);
 }
 
   function copyCmd(btn) {

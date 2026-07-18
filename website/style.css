@@ -275,11 +275,46 @@ nav, .container, .page, .docs-shell, .templates-page, footer {
 
 @media (min-width: 900px) {
   .sidebar {
-    position: relative;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
     transform: none;
     margin-left: 0;
     transition: margin-left 0.25s ease;
   }
   .sidebar.closed { margin-left: -260px; }
   .sidebar-backdrop { display: none !important; }
+}
+
+.sidebar .sidebar-page-link { display: inline-flex; align-items: center; font-size: 14px; font-weight: 500; color: var(--text); text-decoration: none; padding: 10px 24px; border-radius: 8px; margin-bottom: 2px; }
+.sidebar-page-link:hover { background: var(--bg2); }
+.sidebar-page-link.active { background: var(--coral-bg); color: var(--coral-text); }
+.sidebar-label { display: flex; align-items: center; justify-content: space-between; width: 100%; background: none; border: none; cursor: pointer; font-size: 11px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.6rem; padding: 0; }
+.sidebar-page-row { display: flex; align-items: center; justify-content: space-between; }
+.accordion-toggle { background: none; border: none; cursor: pointer; color: var(--text2); padding: 4px; display: flex; align-items: center; }
+.accordion-icon { transition: transform 0.2s ease; font-size: 14px; }
+.accordion-icon.rotated { transform: rotate(-90deg); }
+.accordion-content { max-height: 500px; opacity: 1; overflow: hidden; transition: max-height 0.25s ease, opacity 0.2s ease; padding-left: 4px; }
+.accordion-content.collapsed { max-height: 0; opacity: 0; }
+.accordion-sublabel { font-size: 10px; font-weight: 500; color: var(--text3); text-transform: uppercase; letter-spacing: 0.8px; margin: 14px 0 4px; }
+
+.accordion-content a { display: block; font-size: 13px; color: var(--text2); text-decoration: none; padding: 6px 10px 6px 22px; border-left: 1px solid var(--border2); margin-left: 12px; }
+.accordion-content a:hover { color: var(--text); }
+.accordion-content a.active { color: var(--coral); font-weight: 500; border-left-color: var(--coral); }
+body.no-transition { transition: none !important; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 99px; border: 2px solid var(--bg); }
+::-webkit-scrollbar-thumb:hover { background: var(--coral); }
+
+* { scrollbar-width: thin; scrollbar-color: var(--border2) var(--bg); }
+.docs-section:target,
+.section:target,
+.template-card:target {
+  animation: section-highlight 1.5s ease;
+}
+@keyframes section-highlight {
+  0% { background: var(--coral-bg); border-radius: 12px; }
+  100% { background: transparent; }
 }
