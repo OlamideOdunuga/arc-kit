@@ -253,7 +253,7 @@ nav, .container, .page, .docs-shell, .templates-page, footer {
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100dvh;
   width: 260px;
   z-index: 100;
   overflow-y: auto;
